@@ -13,6 +13,7 @@ const state = {
     seoDesc: 'The ultimate creative platform for modern teams.',
     buttonStyle: 'rounded',
     fontPairing: 'sans',
+    heroImage: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1920&q=80', // Tech default
     showNav: true,
     feature1Title: 'Speed',
     feature1Desc: 'Optimized for speed. Loads in under 200ms.',
@@ -69,6 +70,23 @@ document.querySelector('#app').innerHTML = `
           <option value="minimal">Minimal White</option>
         </select>
       </div>
+
+      <div class="control-group">
+        <label>Visual Theme (Stock Assets)</label>
+        <select id="inputImage">
+          <option value="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1920&q=80">💻 Technology (Default)</option>
+          <option value="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1920&q=80">🏢 Corporate Office</option>
+          <option value="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1920&q=80">🎮 Gaming / Neon</option>
+          <option value="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1920&q=80">👗 Fashion / Luxury</option>
+          <option value="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1920&q=80">🏋️ Fitness / Gym</option>
+          <option value="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1920&q=80">🍕 Food / Dining</option>
+          <option value="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=1920&q=80">🏙️ City / Urban</option>
+          <option value="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?auto=format&fit=crop&w=1920&q=80">🌿 Nature / Travel</option>
+          <option value="https://cdn.coverr.co/videos/coverr-typing-on-computer-keyboard-2614/1080p.mp4">🎥 Video: Typing (Tech)</option>
+          <option value="https://cdn.coverr.co/videos/coverr-walking-in-a-city-at-night-4546/1080p.mp4">🎥 Video: Night City (Urban)</option>
+        </select>
+      </div>
+
       <div class="control-group">
         <label>Subheadline</label>
         <textarea id="inputSub">${state.hero.subheadline}</textarea>
@@ -186,6 +204,7 @@ const inputs = {
   align: document.getElementById('inputAlign'),
   font: document.getElementById('inputFont'),
   btnStyle: document.getElementById('inputBtnStyle'),
+  image: document.getElementById('inputImage'),
   nav: document.getElementById('inputNav'),
   seoTitle: document.getElementById('inputSeoTitle'),
   f1t: document.getElementById('inputF1T'),
@@ -209,6 +228,14 @@ const updatePreview = () => {
   /* DYNAMIC ASSETS & STYLES */
   const btnRadius = inputs.btnStyle.value === 'pill' ? 'rounded-full' : inputs.btnStyle.value === 'sharp' ? 'rounded-none' : 'rounded-xl';
   const fontFamily = inputs.font.value === 'serif' ? 'font-serif' : inputs.font.value === 'mono' ? 'font-mono' : 'font-sans';
+  
+  // Dynamic Media Helper
+  const isVideo = inputs.image.value.endsWith('.mp4');
+  const mediaUrl = inputs.image.value;
+  const mediaContent = isVideo 
+    ? `<video src="${mediaUrl}" autoplay loop muted playsinline class="w-full h-full object-cover"></video>`
+    : `<img src="${mediaUrl}" class="w-full h-full object-cover" alt="Hero Background">`;
+
   const fontLink = inputs.font.value === 'serif' 
     ? '<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400&display=swap" rel="stylesheet">'
     : inputs.font.value === 'mono'
@@ -319,14 +346,14 @@ const updatePreview = () => {
            <div class="relative lg:h-[800px] flex items-center justify-center reveal delay-200">
               <!-- Abstract Shape (Simulated with Hero Image) -->
               <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] pointer-events-none">
-                 <img src="./assets/hero-tech.png" class="w-full h-full object-contain opacity-80 mix-blend-screen animate-pulse duration-[5000ms]" alt="Abstract Flow">
+                 <img src="${mediaUrl}" class="w-full h-full object-contain opacity-80 mix-blend-screen animate-pulse duration-[5000ms]" alt="Abstract Flow">
               </div>
               
               <!-- Floating Slider Cards -->
               <div class="relative w-full aspect-square max-w-md">
                  <div class="absolute bottom-0 right-0 w-64 h-80 bg-slate-800/80 backdrop-blur border border-white/10 rounded-3xl p-4 transform rotate-6 shadow-2xl hover:rotate-0 transition duration-500 z-20">
                     <div class="w-full h-full bg-slate-900 rounded-2xl overflow-hidden relative group">
-                       <img src="./assets/hero-tech.png" class="w-full h-full object-cover">
+                       ${mediaContent}
                        <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
                           <span class="font-bold">Analytics Preview</span>
                        </div>
@@ -334,7 +361,7 @@ const updatePreview = () => {
                  </div>
                  <div class="absolute bottom-12 right-12 w-64 h-80 bg-slate-800/80 backdrop-blur border border-white/10 rounded-3xl p-4 transform -rotate-3 hover:rotate-0 transition duration-500 z-10">
                     <div class="w-full h-full bg-slate-900 rounded-2xl overflow-hidden">
-                       <img src="./assets/hero-tech.png" class="w-full h-full object-cover grayscale opacity-50">
+                       ${isVideo ? '<div class="w-full h-full bg-slate-800"></div>' : `<img src="${mediaUrl}" class="w-full h-full object-cover grayscale opacity-50">`}
                     </div>
                  </div>
               </div>
@@ -438,14 +465,14 @@ const updatePreview = () => {
        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-x-12 gap-y-24">
           <div class="group cursor-pointer">
              <div class="aspect-[0.8] overflow-hidden mb-6">
-                <img src="./assets/hero-tech.png" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition duration-700">
+                ${mediaContent}
              </div>
              <h3 class="text-4xl font-bold mb-2">${inputs.f1t.value}</h3>
              <p class="text-neutral-500 border-b border-black/10 pb-4 inline-block">UI/UX Design</p>
           </div>
           <div class="group cursor-pointer md:mt-32">
              <div class="aspect-[0.8] overflow-hidden mb-6">
-                <img src="./assets/hero-tech.png" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition duration-700">
+                ${mediaContent}
              </div>
              <h3 class="text-4xl font-bold mb-2">${inputs.f2t.value}</h3>
              <p class="text-neutral-500 border-b border-black/10 pb-4 inline-block">Development</p>
@@ -651,7 +678,7 @@ const updatePreview = () => {
    </nav>
 
    <section class="min-h-screen flex items-center px-6 relative">
-      <div class="absolute inset-0 bg-[url(./assets/hero-tech.png)] bg-cover bg-center opacity-30 mix-blend-color-dodge"></div>
+      <div class="absolute inset-0 bg-cover bg-center opacity-30 mix-blend-color-dodge" style="background-image: url('${mediaUrl}')"></div>
       <div class="max-w-7xl mx-auto w-full grid md:grid-cols-2 gap-12 relative z-10">
          <div>
             <div class="border-l-4 pl-6 mb-8" style="border-color: ${inputs.color.value}">
@@ -761,7 +788,7 @@ const updatePreview = () => {
             </div>
          </div>
          <div class="relative">
-            <img src="./assets/hero-tech.png" class="rounded-xl shadow-2xl border border-gray-200 w-full">
+            ${mediaContent} <!-- Corporate Image -->
             <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-lg shadow-xl border border-gray-100 max-w-xs hidden lg:block">
                <div class="flex items-center gap-4 mb-4">
                   <div class="w-10 h-10 rounded-full bg-green-100 text-green-600 flex items-center justify-center font-bold">✓</div>
@@ -1016,7 +1043,8 @@ const generateFromPrompt = () => {
       template: 'modern',
       color: '#ef4444',
       font: 'sans',
-      btn: 'sharp'
+      btn: 'sharp',
+      image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1920&q=80'
     },
     gaming: {
       tags: ['game', 'esport', 'stream', 'twitch', 'cyber', 'neon', 'play'],
@@ -1029,7 +1057,8 @@ const generateFromPrompt = () => {
       template: 'neon',
       color: '#10b981', // Emerald/Neon Green
       font: 'mono',
-      btn: 'sharp'
+      btn: 'sharp',
+      image: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1920&q=80'
     },
     finance: {
       tags: ['finance', 'bank', 'money', 'invest', 'crypto', 'stock', 'wealth', 'corp', 'consult'],
@@ -1042,7 +1071,8 @@ const generateFromPrompt = () => {
       template: 'corporate',
       color: '#1e40af', // Blue
       font: 'sans',
-      btn: 'rounded'
+      btn: 'rounded',
+      image: 'https://images.unsplash.com/photo-1565514020176-dbf2277e4973?auto=format&fit=crop&w=1920&q=80' // Finance Skyscraper
     },
     fashion: {
       tags: ['fashion', 'style', 'cloth', 'luxury', 'brand', 'shop', 'store', 'boutique'],
@@ -1055,7 +1085,8 @@ const generateFromPrompt = () => {
       template: 'adlendors',
       color: '#f59e0b', // Amber/Gold
       font: 'serif',
-      btn: 'pill'
+      btn: 'pill',
+      image: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1920&q=80'
     },
     food: {
       tags: ['food', 'restaurant', 'coffee', 'cafe', 'eat', 'drink', 'organic'],
@@ -1068,7 +1099,8 @@ const generateFromPrompt = () => {
       template: 'nova',
       color: '#d97706', // Orange/Brown
       font: 'serif',
-      btn: 'rounded'
+      btn: 'rounded',
+      image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1920&q=80'
     },
     saas: {
       tags: ['saas', 'tech', 'app', 'software', 'start', 'platform', 'ai', 'cloud'],
@@ -1081,7 +1113,8 @@ const generateFromPrompt = () => {
       template: 'tailwind',
       color: '#6366f1', // Indigo
       font: 'sans',
-      btn: 'rounded'
+      btn: 'rounded',
+      image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1920&q=80'
     },
     portfolio: {
       tags: ['design', 'art', 'portfolio', 'work', 'studio', 'minimal', 'create'],
@@ -1094,7 +1127,8 @@ const generateFromPrompt = () => {
       template: 'design',
       color: '#000000',
       font: 'sans',
-      btn: 'sharp'
+      btn: 'sharp',
+      image: 'https://images.unsplash.com/photo-1506784365371-ebd6140e1306?auto=format&fit=crop&w=1920&q=80' // Minimal Nature
     }
   };
 
@@ -1151,6 +1185,7 @@ const generateFromPrompt = () => {
     inputs.color.value = match.color;
     inputs.font.value = match.font;
     inputs.btnStyle.value = match.btn;
+    inputs.image.value = match.image; // Update Image Selector
     
     // Update Features
     inputs.f1t.value = match.f1t; inputs.f1d.value = match.f1d;
