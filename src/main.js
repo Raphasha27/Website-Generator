@@ -106,13 +106,7 @@ document.querySelector('#app').innerHTML = `
           <option value="left">Left Aligned</option>
         </select>
       </div>
-      <div class="control-group">
-        <label>Hero Alignment</label>
-        <select id="inputAlign">
-          <option value="center">Center</option>
-          <option value="left">Left Aligned</option>
-        </select>
-      </div>
+
       <div class="control-group">
         <label>Typography</label>
         <select id="inputFont">
@@ -613,8 +607,12 @@ const updatePreview = () => {
                </button>
             </div>
          </div>
-         <div class="md:col-span-5 bg-[url(./assets/hero-tech.png)] bg-cover bg-center grayscale contrast-125 border-black/10">
-            <div class="h-full w-full bg-black/10 backdrop-blur-[2px]"></div>
+         <div class="md:col-span-5 relative overflow-hidden border-l-2 border-black">
+            ${isVideo 
+              ? `<video src="${mediaUrl}" autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover grayscale contrast-125"></video>` 
+              : `<div class="absolute inset-0 bg-cover bg-center grayscale contrast-125" style="background-image: url('${mediaUrl}')"></div>`
+            }
+            <div class="absolute inset-0 bg-black/10 backdrop-blur-[2px] z-10"></div>
          </div>
       </main>
       
@@ -856,7 +854,12 @@ const updatePreview = () => {
           nav { background: rgba(15, 23, 42, 0.9) !important; border-bottom: 1px solid #1e293b; }
           .nav-logo { color: white !important; }
           .nav-link { color: #94a3b8 !important; } .nav-link:hover { color: white !important; }
-          .hero { background: radial-gradient(circle at top right, ${inputs.color.value}20, transparent), #0f172a !important; text-align: left !important; align-items: flex-start !important; }
+          .hero { 
+             background: linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.9)), url('${!isVideo ? mediaUrl : ''}') !important;
+             background-size: cover !important;
+             background-position: center !important;
+             text-align: left !important; align-items: flex-start !important; 
+          }
           h1 { color: white !important; } p { color: #cbd5e1 !important; }
           .feat-card, .testimonial { background: #1e293b !important; border: 1px solid #334155 !important; }
           .feat-title, .test-author { color: white !important; }
