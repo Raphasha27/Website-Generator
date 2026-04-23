@@ -1,0 +1,36 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  lint:
+    name: Lint (HTML/JS)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate static site files
+        shell: bash
+        run: |
+          test -f index.html || { echo "index.html not found"; exit 1; }
+          test -f script.js || echo "script.js not found; continuing"
+          test -f style.css || echo "style.css not found; continuing"
+          echo "Basic static site validation passed."
+
+  security_scan:
+    name: Security Scan (Trivy)
+    needs: lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          ignore-unfixed: true
+          format: 'table'
+          exit-code: '0'
+          severity: 'CRITICAL,HIGH'

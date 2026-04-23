@@ -1,8 +1,15 @@
-# Fire4s Project 1 (Week 1): Website Generator 🌶️
+# 🏛️ KIROV DYNAMICS | WEBSITE GENERATOR
 
-![FireFks Generator Nova](./screenshot_nova.png)
+[![Kirov Dynamics](https://img.shields.io/badge/Kirov_Dynamics-Sovereign_Intelligence-002D62?style=for-the-badge&labelColor=0d1117)](https://github.com/Raphasha27)
+![Status](https://img.shields.io/badge/Status-🚀_Active-3fb950?style=for-the-badge&labelColor=0d1117)
 
-A rapid-prototyping tool for creating high-performance landing pages, built in collaboration with the **FireFks** team at **CAPACITI**.
+> **"Rapid Prototyping for a Digital Future."**
+
+## 🖼️ Visual Showcase
+![Website Generator](screenshot_nova.png)
+
+---
+A rapid-prototyping tool for creating high-performance landing pages, built in collaboration with the **Kirov Dynamics** team at **CAPACITI**.
 
 ## 🚀 Overview
 
@@ -36,13 +43,14 @@ This Week 1 delivery focuses on the core "Generator" engine. It allows non-techn
 - **CSS3 / Glassmorphism**: For the premium editor workspace.
 
 ## 🤝 Collaboration
-Built with the FireFks team to streamline the web creation process for CAPACITI projects.
+Built with the **Kirov Dynamics** team to streamline the web creation process for CAPACITI projects.
 
 ## 📦 Getting Started
 
-1. `cd Fire4s_Project1_Week1`
+1. `cd website_gen`
 2. `npm install`
 3. `npm run dev`
 
 ---
-*Created by Raphasha & The FireFks Team*
+*Developed by Raphasha27 - Kirov Dynamics 2026.*
+
