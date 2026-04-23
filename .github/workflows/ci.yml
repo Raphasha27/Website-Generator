@@ -12,18 +12,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Use Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - name: Check Syntax
-        continue-on-error: true
+      - name: Validate static site files
+        shell: bash
         run: |
-          if [ -f index.html ]; then
-            npx -y htmlhint index.html || true
-          else
-            echo "Skipping htmlhint - index.html not found"
-          fi
+          test -f index.html || { echo "index.html not found"; exit 1; }
+          test -f script.js || echo "script.js not found; continuing"
+          test -f style.css || echo "style.css not found; continuing"
+          echo "Basic static site validation passed."
 
   security_scan:
     name: Security Scan (Trivy)
