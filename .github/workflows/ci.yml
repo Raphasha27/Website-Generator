@@ -17,7 +17,13 @@ jobs:
         with:
           node-version: '20'
       - name: Check Syntax
-        run: npx -y htmlhint index.html || true
+        continue-on-error: true
+        run: |
+          if [ -f index.html ]; then
+            npx -y htmlhint index.html
+          else
+            echo "Skipping htmlhint - index.html not found"
+          fi
 
   security_scan:
     name: Security Scan (Trivy)
