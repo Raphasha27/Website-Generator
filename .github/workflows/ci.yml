@@ -1,28 +1,31 @@
-name: Continuous Integration
-
+name: CI
 on:
+  workflow_dispatch:
   push:
-    branches: [ main, master ]
+    branches: [ master, main ]
   pull_request:
-    branches: [ main, master ]
+    branches: [ master, main ]
 
 jobs:
-  lint:
-    name: Lint (HTML/JS)
+  build:
+    name: Build & Test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Validate static site files
-        shell: bash
-        run: |
-          test -f index.html || { echo "index.html not found"; exit 1; }
-          test -f script.js || echo "script.js not found; continuing"
-          test -f style.css || echo "style.css not found; continuing"
-          echo "Basic static site validation passed."
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm install
+      - name: Build
+        run: npm run build --if-present
+      - name: Test
+        run: npm test --if-present
 
   security_scan:
     name: Security Scan (Trivy)
-    needs: lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
