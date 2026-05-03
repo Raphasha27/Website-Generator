@@ -12,36 +12,44 @@
 ---
 A rapid-prototyping tool for creating high-performance landing pages, built in collaboration with the **Kirov Dynamics** team at **CAPACITI**.
 
-## 🚀 Overview
+## 🚀 Architecture: Kirov Nexus Protocol
 
-This Week 1 delivery focuses on the core "Generator" engine. It allows non-technical users to input brand parameters (Headlines, Colors, CTA) and instantly see a production-ready landing page.
+```mermaid
+graph TD
+    User([Non-Technical User]) --> Prompt[AI Magic Generator]
+    Prompt --> Brain{Nexus Intelligence}
+    Brain --> Template[Template Engine]
+    Template --> Nova[Nova Premium]
+    Template --> Nexus[Nexus Enterprise]
+    Template --> Neon[Cyberpunk Hub]
+    Template --> Export[HTML Production Bundle]
+    
+    subgraph Infrastructure
+        HealthHub[Health Hub Enforcer] -- Hardening --> Repo[Website-Generator]
+        Repo -- Autonomous --> Deployment[Green Tick Success]
+    end
+```
 
-## ✨ Features (v3.0 - Nova Update)
+## ✨ Features (v4.0 - Enterprise Edition)
 
-- **🧠 AI Magic Generator**:
-  - Type natural language prompts (e.g., "A cyberpunk gaming site") to instantly generate a full website.
-  - Automatically selects the best template, colors, fonts, and writes the copy for you.
-- **🔥 6 Premium Templates**:
-  - **Nova**: Premium SaaS/Tech.
-  - **Neon Cyberpunk**: Gaming & Web3.
-  - **Corporate Pro**: Finance & Enterprise.
-  - **Adlendors**: Creative Agency.
-  - **Design**: Brutalist Portfolio.
-  - **Tailwind**: Developer Documentation.
-- **📱 Fully Responsive**: Mobile-first designs with floating glass navigation.
-- **⚡ Real-Time Preview**: Instant updates with no build time.
-- **🎨 Advanced Design Control**:
-  - **Hero Alignment**: Toggle between Left and Center layouts.
-  - **Feature Grid**: Customize a 3-column features section.
-  - **Testimonials**: Add social proof with a dedicated testimonial block.
-- **⚙️ SEO Ready**: Edit Page Titles and Meta Tags directly.
-- **⬇️ Export HTML**: One-click download of the production-ready code.
+- **🧠 Nexus Intelligence Engine**:
+  - Re-engineered with modular template logic.
+  - Type complex prompts to deploy high-end enterprise landing pages.
+- **💎 Nexus Enterprise Template**:
+  - Our most advanced design yet.
+  - Features glassmorphism, depth-based layout, and premium Kirov Dynamics branding.
+- **⚡ Zero-Latency Preview**:
+  - Instant visual feedback powered by the modular rendering stack.
+- **🏛️ Health Hub Integration**:
+  - **Success Lock-in**: All deployments are monitored by the Health Hub v4.0 engine.
+  - **Zero-Noise**: Dependabot is configured for silent hardening without approval overhead.
+  - **Billing Protection**: Automated cancellation of redundant CI runs to save cloud costs.
 
 ## 🛠️ Technology Stack
 
-- **Vite**: For lightning-fast development experience.
-- **Vanilla JS**: Lightweight state management for the generator logic.
-- **CSS3 / Glassmorphism**: For the premium editor workspace.
+- **Modular JS Engine**: Decoupled template architecture for rapid scaling.
+- **Tailwind CSS JIT**: High-performance utility styling.
+- **Glassmorphism 2.0**: Premium visual effects using backdrop-blur and radial meshes.
 
 ## 🤝 Collaboration
 Built with the **Kirov Dynamics** team to streamline the web creation process for CAPACITI projects.
