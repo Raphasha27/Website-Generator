@@ -1,7 +1,8 @@
 # 🏛️ KIROV DYNAMICS | WEBSITE GENERATOR
 
 [![Kirov Dynamics](https://img.shields.io/badge/Kirov_Dynamics-Sovereign_Intelligence-002D62?style=for-the-badge&labelColor=0d1117)](https://github.com/Raphasha27)
-![Status](https://img.shields.io/badge/Status-🚀_Active-3fb950?style=for-the-badge&labelColor=0d1117)
+[![Health Hub](https://img.shields.io/badge/Security-Health_Hub_Hardened-blue?style=for-the-badge&labelColor=0d1117)](https://github.com/Raphasha27/Health-Hub)
+[![Status](https://img.shields.io/badge/Status-Autonomous-success?style=for-the-badge&logo=github-actions&logoColor=white&color=2ea44f&labelColor=0d1117)](https://github.com/Raphasha27/Health-Hub)
 
 > **"Rapid Prototyping for a Digital Future."**
 
