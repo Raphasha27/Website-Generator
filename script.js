@@ -1,3 +1,5 @@
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
 document.getElementById('generate-button').addEventListener('click', (e) => {
    e.preventDefault();
    const genre = document.getElementById('genre').value;
@@ -15,13 +17,13 @@ document.getElementById('generate-button').addEventListener('click', (e) => {
 
    const result = `
 <h2>Generated Story</h2>
-<p><strong>Genre:</strong> ${genre}</p>
-<p><strong>Title:</strong> ${title}</p>
-<p><strong>Author:</strong> ${author}</p>
-<p><strong>Character:</strong> ${character}</p>
-<p><strong>Storyline:</strong> ${storyline}</p>
-<p><strong>Message:</strong> ${message}</p>
-<p><strong>Date:</strong> ${date}</p>
+<p><strong>Genre:</strong> ${esc(genre)}</p>
+<p><strong>Title:</strong> ${esc(title)}</p>
+<p><strong>Author:</strong> ${esc(author)}</p>
+<p><strong>Character:</strong> ${esc(character)}</p>
+<p><strong>Storyline:</strong> ${esc(storyline)}</p>
+<p><strong>Message:</strong> ${esc(message)}</p>
+<p><strong>Date:</strong> ${esc(date)}</p>
    `;
    document.getElementById('result').innerHTML = result;
 });
