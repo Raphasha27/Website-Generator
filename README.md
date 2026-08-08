@@ -63,3 +63,8 @@ Built with the **Kirov Dynamics** team to streamline the web creation process fo
 ---
 *Developed by Raphasha27 - Kirov Dynamics 2026.*
 
+## Contributors
+
+This project is developed and maintained together with the team:
+- [Raphasha27](https://github.com/Raphasha27) — Project lead & maintainer
+- [Oko-Mwezo](https://github.com/Oko-Mwezo) — Contributor
